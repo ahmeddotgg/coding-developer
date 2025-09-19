@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import type { Course } from "@/lib/db";
 
 export const NewCources = async () => {
-  const cources: Course[] = [];
+  const courses: Course[] = [];
 
   return (
     <div className="container space-y-16 py-22">
@@ -13,7 +13,7 @@ export const NewCources = async () => {
         <Image src="/vector.svg" alt="vector doodle" width={120} height={20} />
       </h2>
       <div className="grid auto-rows-fr grid-cols-1 gap-4 lg:grid-cols-3 min-[630px]:grid-cols-2">
-        {cources.map((cource: Course) => (
+        {courses.map((cource: Course) => (
           <div
             key={cource.id}
             className="flex h-full flex-col gap-4 rounded-xl border"
