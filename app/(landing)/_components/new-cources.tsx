@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import type { Course } from "@/lib/db";
 
 export const NewCources = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses`);
-  const cources: Course[] = await res.json();
+  const cources: Course[] = [];
 
   return (
     <div className="container space-y-16 py-22">
