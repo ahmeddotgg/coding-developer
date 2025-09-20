@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" dir="rtl" data-scroll-behavior="smooth">
+    <html lang="en" dir="" data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${estedad.variable}`}>
         {children}
       </body>
