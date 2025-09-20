@@ -34,13 +34,15 @@ export const Hero = () => {
             </Button>
           </div>
         </div>
+
         <Image
           src="hero.svg"
           alt="students"
           width={500}
           height={600}
           priority
-          className="fade-in slide-in-from-top-10 animate-in duration-1000"
+          style={{ height: "auto" }}
+          className="fade-in slide-in-from-top-10 w-full animate-in duration-1000"
         />
       </div>
     </div>

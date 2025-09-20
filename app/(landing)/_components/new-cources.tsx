@@ -59,14 +59,16 @@ export const NewCources = async () => {
           alt="vector doodle"
           width={120}
           height={20}
-          className="h-[20px] w-[120px]"
+          priority
+          style={{ height: "auto" }}
+          className="w-auto max-w-28"
         />
       </h2>
       <div className="grid auto-rows-fr grid-cols-1 gap-4 lg:grid-cols-3 min-[630px]:grid-cols-2">
         {courses.map((cource) => (
           <div
             key={cource.id}
-            className="flex h-full flex-col gap-4 rounded-xl border"
+            className="hover:-translate-y-2 flex h-full flex-col gap-4 rounded-xl border transition-transform"
           >
             <Image
               src={cource.image}

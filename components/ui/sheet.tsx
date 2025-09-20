@@ -87,7 +87,7 @@ function SheetHeader({
     <div
       data-slot="sheet-header"
       className={cn(
-        "flex h-20 items-center justify-between gap-2 border-b-2 px-4",
+        "flex h-20 items-center justify-between gap-2 border-b-2",
         className,
       )}
       {...props}
@@ -99,11 +99,12 @@ function SheetHeader({
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
       <Image
-        src="/GPTlogo.png"
+        src="/GPTlogo.svg"
         alt="logo"
-        width={84}
-        height={84}
-        className="h-[84px] w-[84px]"
+        width={62}
+        height={80}
+        priority
+        style={{ height: "auto" }}
       />
       <div className="sr-only">{children}</div>
     </div>

@@ -21,7 +21,7 @@ const items = [
 
 export const ChooseUs = () => {
   return (
-    <div className="bg-indigo-400/30 py-22">
+    <div className="bg-indigo-400/20 py-22">
       <div className="container space-y-16">
         <h2 className="flex flex-col items-center justify-center gap-2 font-bold text-4xl">
           لماذا نحن!
@@ -30,14 +30,16 @@ export const ChooseUs = () => {
             alt="vector doodle"
             width={120}
             height={20}
-            className="h-[20px] w-[120px]"
+            priority
+            style={{ height: "auto" }}
+            className="w-auto max-w-28"
           />
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {items.map((item) => (
             <div
               key={item.title}
-              className="grid grid-rows-[15rem_auto] gap-6 rounded-2xl bg-card p-4"
+              className="hover:-translate-y-2 grid grid-rows-[15rem_auto] gap-6 rounded-2xl border-2 bg-card p-4 transition-transform"
             >
               <Image
                 src={item.image}

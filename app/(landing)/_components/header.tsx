@@ -17,11 +17,13 @@ export const Header = () => {
           <MobileMenu />
 
           <Image
-            src="/GPTlogo.png"
+            src="/GPTlogo.svg"
             alt="logo"
-            width={84}
-            height={84}
-            className="ms-auto ms:me-0 h-[84px] w-[84px]"
+            width={62}
+            height={80}
+            priority
+            style={{ height: "auto" }}
+            className="ms-auto ms:me-0"
           />
 
           <div
@@ -67,7 +69,7 @@ export const Header = () => {
           </div>
 
           <Link
-            href="/sign-up"
+            href="/sign-in"
             className="rounded-full bg-primary px-6 py-2 text-white hover:bg-primary/90 sm:hidden"
           >
             ابدأ الان

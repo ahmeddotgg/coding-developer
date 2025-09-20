@@ -27,7 +27,7 @@ export const MobileMenu = () => {
   }, [isDesktop, open]);
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={open} onOpenChange={setOpen} modal={false}>
       <SheetTrigger asChild className="md:hidden">
         <Button variant="outline" size="icon">
           <Menu className="size-5" />
@@ -56,7 +56,7 @@ export const MobileMenu = () => {
 
           <SheetClose asChild>
             <Link
-              href="/"
+              href="/courses"
               className={cn(
                 buttonVariants({ variant: "ghost" }),
                 pathname === "/courses" ? "active" : undefined,
@@ -68,7 +68,19 @@ export const MobileMenu = () => {
 
           <SheetClose asChild>
             <Link
-              href="/"
+              href="/diplomas"
+              className={cn(
+                buttonVariants({ variant: "ghost" }),
+                pathname === "/diplomas" ? "active" : undefined,
+              )}
+            >
+              الدبلومات
+            </Link>
+          </SheetClose>
+
+          <SheetClose asChild>
+            <Link
+              href="/contact-us"
               className={cn(
                 buttonVariants({ variant: "ghost" }),
                 pathname === "/contact-us" ? "active" : undefined,
