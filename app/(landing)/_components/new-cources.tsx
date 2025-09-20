@@ -52,18 +52,7 @@ export const NewCources = async () => {
 
   return (
     <div className="container space-y-16 py-22">
-      <h2 className="flex flex-col items-center justify-center gap-2 font-bold text-4xl">
-        اجدد الدورات
-        <Image
-          src="/vector.svg"
-          alt="vector doodle"
-          width={120}
-          height={20}
-          priority
-          style={{ height: "auto" }}
-          className="w-auto max-w-28"
-        />
-      </h2>
+      <h2 className="font-bold text-4xl">اجدد الدورات</h2>
       <div className="grid auto-rows-fr grid-cols-1 gap-4 lg:grid-cols-3 min-[630px]:grid-cols-2">
         {courses.map((cource) => (
           <div
