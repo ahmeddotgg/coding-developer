@@ -30,6 +30,7 @@ export const ChooseUs = () => {
             alt="vector doodle"
             width={120}
             height={20}
+            className="h-[20px] w-[120px]"
           />
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
