@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export const Hero = () => {
   return (
     <div className="space-y-8">
-      <div className="container grid grid-cols-1 items-center justify-items-center gap-4 space-y-14 py-4 md:grid-cols-2 md:py-22">
+      <div className="container grid grid-cols-1 items-center justify-items-center gap-4 space-y-14 pb-8 md:grid-cols-2 md:pb-22">
         <div className="fade-in slide-in-from-right-10 flex animate-in flex-col justify-center space-y-6 text-balance text-center duration-1000 md:text-start">
           <h1 className="font-bold text-5xl leading-16 min-[545px]:text-6xl min-[545px]:leading-22">
             خطوتك الأولى نحو احتراف{" "}

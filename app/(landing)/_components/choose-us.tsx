@@ -33,9 +33,9 @@ export const ChooseUs = () => {
               <Image
                 src={item.image}
                 alt={item.title}
-                width={800}
-                height={800}
-                className="size-full"
+                width={700}
+                height={700}
+                className="mx-auto size-full max-w-[350px]"
               />
 
               <h2 className="text-center font-semibold text-2xl">

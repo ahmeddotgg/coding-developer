@@ -1,16 +1,9 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Headroom from "react-headroom";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "./mobile-menu";
 
@@ -19,7 +12,7 @@ export const Header = () => {
 
   return (
     <Headroom>
-      <div className="bg-black/5 backdrop-blur-3xl">
+      <div className="bg-white">
         <div className="container flex h-20 items-center gap-2 font-semibold sm:gap-6">
           <MobileMenu />
 
@@ -44,20 +37,12 @@ export const Header = () => {
               الرئيسية
             </Link>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex cursor-pointer items-center gap-1 transition-color hover:text-primary hover:underline data-[state=open]:[&>svg]:rotate-180">
-                خدماتنا
-                <ChevronDown className="size-4 transition-transform" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                onCloseAutoFocus={(e) => e.preventDefault()}
-                className="w-72 space-y-3 p-4 text-start text-lg"
-              >
-                <DropdownMenuItem>Web Development</DropdownMenuItem>
-                <DropdownMenuItem>Mobile applications</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
+            <Link
+              className={pathname === "/services" ? "active" : undefined}
+              href="/services"
+            >
+              خدماتنا
+            </Link>
             <Link
               className={pathname === "/courses" ? "active" : undefined}
               href="/courses"
