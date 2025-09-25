@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { AppSidebar } from "@/components/app-sidebar";
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
-import { SiteHeader } from "@/components/site-header";
+import { AppSidebar } from "@/app/(admin)/_components/app-sidebar";
+import { ChartAreaInteractive } from "@/app/(admin)/_components/chart-area-interactive";
+import { DataTable } from "@/app/(admin)/_components/data-table";
+import { SectionCards } from "@/app/(admin)/_components/section-cards";
+import { SiteHeader } from "@/app/(admin)/_components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import data from "./data.json";
 
@@ -21,8 +21,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
-      <SidebarInset>
+      <SidebarInset dir="rtl">
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
@@ -36,6 +35,7 @@ export default function Page() {
           </div>
         </div>
       </SidebarInset>
+      <AppSidebar variant="inset" collapsible="icon" dir="rtl" side="right" />
     </SidebarProvider>
   );
 }

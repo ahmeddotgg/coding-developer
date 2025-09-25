@@ -1,55 +1,11 @@
 import { Clock } from "lucide-react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { courses } from "./data";
 
 export const NewCources = async () => {
-  const courses = [
-    {
-      id: 1,
-      title: "كورس أساسيات البرمجة باستخدام C++",
-      description:
-        "تعلم أساسيات البرمجة، البرمجة الكائنية، هياكل البيانات، ومهارات حل المشكلات باستخدام لغة C++.",
-      price: 3000,
-      discountPrice: 2000,
-      duration: "شهرين",
-      category: "Programming Fundamentals",
-      image: "/cources-images/c++.png",
-    },
-    {
-      id: 2,
-      title: "Frontend Development",
-      description:
-        "كورس متخصص في تطوير واجهات المستخدم باستخدام HTML, CSS, Bootstrap, Tailwind, JavaScript, وReact.",
-      price: 5000,
-      discountPrice: 4000,
-      duration: "3 شهور",
-      category: "Frontend",
-      image: "/cources-images/frontend.png",
-    },
-    {
-      id: 3,
-      title: "Backend Development",
-      description:
-        "كورس متخصص في تطوير السيرفر باستخدام PHP, MySQL, Laravel 12 مع تطبيقات عملية.",
-      price: 5000,
-      discountPrice: 4000,
-      duration: "3 شهور",
-      category: "Backend",
-      image: "/cources-images/backend.jpg",
-    },
-    {
-      id: 4,
-      title: "كورس الأطفال (4 مستويات)",
-      description:
-        "رحلة تعليمية للأطفال تبدأ بـ Scratch Jr ثم Scratch وتصميم الألعاب البسيطة، يليها أساسيات تصميم المواقع بمستوى مبسط وتنتهي بمشروع عملي وشهادة.",
-      price: 3000,
-      discountPrice: 1500,
-      duration: "شهرين + شهرين تدريب مجاني",
-      category: "Kids",
-      image: "/cources-images/scratch.png",
-    },
-  ];
-
   return (
     <div className="container space-y-16 py-22">
       <h2 className="font-bold text-4xl">اجدد الدورات</h2>
@@ -77,9 +33,15 @@ export const NewCources = async () => {
                 <p>{cource.description}</p>
               </div>
 
-              <Button className="w-full cursor-pointer rounded-full bg-gradient-to-l from-primary to-indigo-500">
+              <Link
+                href={`/courses/${cource.id}`}
+                className={cn(
+                  buttonVariants(),
+                  "w-full cursor-pointer rounded-full bg-gradient-to-l from-primary to-indigo-500",
+                )}
+              >
                 سجل الأن
-              </Button>
+              </Link>
             </div>
           </div>
         ))}

@@ -1,11 +1,16 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
   Sheet,
   SheetClose,
@@ -53,6 +58,45 @@ export const MobileMenu = () => {
               الرئيسية
             </Link>
           </SheetClose>
+
+          <Collapsible className="w-full">
+            <CollapsibleTrigger
+              className={cn(
+                buttonVariants({ variant: "ghost" }),
+                "flex min-w-full items-center justify-between data-[state=open]:[&>svg]:rotate-180",
+              )}
+            >
+              خدماتنا
+              <ChevronDown className="size-6 transition-transform" />
+            </CollapsibleTrigger>
+            <CollapsibleContent
+              className="CollapsibleContent space-y-3 p-6 text-sm"
+              dir="ltr"
+            >
+              <SheetClose asChild>
+                <Link
+                  href="/services"
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    pathname === "/services" ? "active" : undefined,
+                  )}
+                >
+                  Web Development
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link
+                  href="/services"
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    pathname === "/services" ? "active" : undefined,
+                  )}
+                >
+                  Mobile Applications
+                </Link>
+              </SheetClose>
+            </CollapsibleContent>
+          </Collapsible>
 
           <SheetClose asChild>
             <Link
