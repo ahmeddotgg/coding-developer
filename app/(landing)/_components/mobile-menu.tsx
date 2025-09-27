@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -35,11 +36,20 @@ export const MobileMenu = () => {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle />
+          <Image
+            src="/GPTlogo.svg"
+            alt="logo"
+            width={59}
+            height={48}
+            style={{ width: 59, height: 48 }}
+            unoptimized
+            priority
+          />
+          <SheetTitle className="sr-only" />
           <SheetDescription></SheetDescription>
         </SheetHeader>
 
-        <div className="flex flex-col items-start gap-5 [&>a.active]:bg-primary/70 [&>a]:block [&>a]:w-full [&>a]:text-start">
+        <div className="flex flex-col items-start gap-5 [&>a.active]:bg-primary/70 [&>a.active]:font-semibold [&>a.active]:text-background [&>a]:block [&>a]:w-full [&>a]:text-start">
           <SheetClose asChild>
             <Link
               href="/"

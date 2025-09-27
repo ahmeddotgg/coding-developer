@@ -2,7 +2,6 @@
 
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
-import Image from "next/image";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./button";
@@ -98,16 +97,8 @@ function SheetHeader({
         <XIcon className="size-5" />
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
-      <Image
-        src="/GPTlogo.svg"
-        alt="logo"
-        width={59}
-        height={48}
-        style={{ width: 59, height: 48 }}
-        unoptimized
-        priority
-      />
-      <div className="sr-only">{children}</div>
+
+      {children}
     </div>
   );
 }

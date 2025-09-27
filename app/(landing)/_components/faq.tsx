@@ -1,9 +1,10 @@
 import {
   type Icon,
   IconAward,
+  IconClock,
   IconCode,
-  IconMail,
-  IconPhone,
+  IconDeviceGamepad,
+  IconSchool,
 } from "@tabler/icons-react";
 import {
   Accordion,
@@ -15,7 +16,7 @@ import {
 interface FAQItem {
   id: string;
   question: string;
-  answer: string;
+  answer: [{ item_1: string; item_2?: string; item_3?: string }];
   intro: string;
   icon: Icon;
 }
@@ -32,35 +33,66 @@ export const Faq = () => {
 const faqData: FAQItem[] = [
   {
     id: "courses-offered",
-    question: "ما هي الدورات المتاحة في الأكاديمية؟",
+    question: "1. ما هي طبيعة الكورسات التي تقدمونها؟",
     intro: "استكشف برامجنا التدريبية المتنوعة",
-    answer:
-      "نقدم مجموعة واسعة من الدورات التي تشمل: تطوير الويب (HTML, CSS, JavaScript, React, Node.js)، تطوير التطبيقات المحمولة (React Native, Flutter)، علوم البيانات والذكاء الاصطناعي (Python, Machine Learning)، تطوير الألعاب (Unity, C#)، والأمن السيبراني. كل دورة مصممة لتناسب مستويات مختلفة من المبتدئين إلى المتقدمين.",
+    answer: [
+      {
+        item_1:
+          "نقدم كورسات متنوعة تشمل: أساسيات البرمجة، تطوير الويب (Front-End و Back-End)، تطوير تطبيقات الموبايل، إضافة إلى كورسات خاصة للأطفال لتعليم البرمجة بطريقة ممتعة وتفاعلية.",
+      },
+    ],
     icon: IconCode,
   },
   {
+    id: "courses-types",
+    question: "2. هل الكورسات عملية أم نظرية فقط؟",
+    intro: "ابدأ رحلتك التعليمية معنا اليوم",
+    answer: [
+      {
+        item_1:
+          "كورساتنا تركّز بشكل كبير على التدريب العملي. الطالب بيشتغل على مشاريع حقيقية + تدريبات بعد الكورس تساعده يبني CV و Portfolio قوي.",
+      },
+    ],
+    icon: IconSchool,
+  },
+  {
+    id: "courses-duration",
+    question: "3. ما هي مدة الكورسات والدبلومات؟",
+    intro: "ابدأ رحلتك التعليمية معنا اليوم",
+    answer: [
+      {
+        item_1: "الكورسات القصيرة: من شهرين إلى 3 شهور.",
+        item_2:
+          "الدبلومات الكاملة (مثل Full Stack Laravel أو .NET): 5 شهور + شهرين تدريب مجاني.",
+        item_3: "كورسات الأطفال: 4 مستويات، مدتها شهرين + شهرين تدريب مجاني.",
+      },
+    ],
+    icon: IconClock,
+  },
+  {
     id: "certificates",
-    question: "هل تقدم الأكاديمية شهادات معتمدة؟",
+    question: "4. هل يوجد شهادات معتمدة بعد انتهاء الكورس؟",
     intro: "احصل على شهادات تعزز مسيرتك المهنية",
-    answer:
-      "نعم، نقدم شهادات إتمام معتمدة لجميع دوراتنا. هذه الشهادات معترف بها من قبل العديد من الشركات في المنطقة. بالإضافة إلى ذلك، نساعد الطلاب في الحصول على شهادات دولية مثل شهادات Microsoft وGoogle وAWS من خلال برامج التحضير المتخصصة. كما نقدم مشاريع تخرج حقيقية يمكن للطلاب إضافتها إلى محافظهم المهنية.",
+    answer: [
+      {
+        item_1: "شهادة إتمام معتمدة من الشركة.",
+        item_2: "شهادة خبرة وتدريب داخلي (للدبلومات).",
+        item_3: "تقرير تقني بالمشاريع التي قمت بتنفيذها.",
+      },
+    ],
     icon: IconAward,
   },
   {
-    id: "registration-contact",
-    question: "كيف يمكنني التسجيل والتواصل معكم؟",
-    intro: "ابدأ رحلتك التعليمية معنا اليوم",
-    answer:
-      "يمكنك التسجيل من خلال زيارة موقعنا الإلكتروني أو زيارة الأكاديمية شخصياً. نقدم استشارات مجانية لمساعدتك في اختيار الدورة المناسبة. للتواصل: هاتف 123-456-7890، بريد إلكتروني info@codingacademy.com، أو زيارتنا في شارع التقنية 123. فريق الاستقبال متاح من السبت إلى الخميس من 9:00 صباحاً إلى 8:00 مساءً لمساعدتك في جميع استفساراتك.",
-    icon: IconPhone,
-  },
-  {
-    id: "support-resources",
-    question: "ما هي الموارد والدعم المتاح للطلاب؟",
-    intro: "دعم شامل لضمان نجاحك",
-    answer:
-      "نقدم دعماً شاملاً يشمل: مواد تعليمية رقمية حصرية، منصة تعلم إلكترونية متاحة 24/7، جلسات دعم إضافية مجانية، مجتمع طلابي نشط للتواصل والمساعدة المتبادلة، ورش عمل شهرية مع خبراء الصناعة، وخدمات التوجيه المهني وكتابة السيرة الذاتية. كما نوفر مكتبة ضخمة من الكتب والموارد التقنية المجانية لجميع الطلاب.",
-    icon: IconMail,
+    id: "kids-courses",
+    question: "5. ما هي طريقة التعلم للأطفال؟",
+    intro: "علم اطفالك المهن المستقبلية",
+    answer: [
+      {
+        item_1:
+          "الأطفال يتعلموا من خلال Scratch Jr و Scratch (بناء ألعاب وقصص تفاعلية)، ثم أساسيات تصميم المواقع، وأخيرًا مشروع تخرج يعرضوه على الأهل أو الفريق مع شهادة ومكافأة تحفيزية.",
+      },
+    ],
+    icon: IconDeviceGamepad,
   },
 ];
 
@@ -93,9 +125,16 @@ function AcademyAccordion() {
             </AccordionTrigger>
             <AccordionContent className="max-w-[60ch] px-6 pb-6">
               <div className="border-border/30 border-t pt-2">
-                <p className="text-right text-foreground leading-relaxed">
-                  {faq.answer}
-                </p>
+                {faq.answer.map((item) => (
+                  <ul
+                    key={item.item_1}
+                    className="list-disc space-y-2 px-6 text-foreground leading-relaxed"
+                  >
+                    <li>{item.item_1}</li>
+                    {item.item_2 && <li>{item.item_2}</li>}
+                    {item.item_3 && <li>{item.item_3}</li>}
+                  </ul>
+                ))}
               </div>
             </AccordionContent>
           </AccordionItem>

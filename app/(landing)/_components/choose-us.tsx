@@ -31,11 +31,11 @@ export const ChooseUs = () => {
             Your browser does not support the video tag.
           </video>
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-4">
           {items.map((item) => (
             <div
               key={item.title}
-              className="hover:-translate-y-2 flex flex-col gap-3 rounded-2xl bg-white p-4 shadow transition-transform md:flex-row"
+              className="hover:-translate-y-2 flex flex-col gap-4 rounded-2xl bg-white p-4 shadow transition-transform md:flex-row"
             >
               <div>
                 <h2 className="line-clamp-2 font-semibold text-lg">
