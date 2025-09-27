@@ -7,16 +7,17 @@ export const Footer = () => {
 
 export default function Footer01() {
   return (
-    <footer className="container">
-      <div className="grid items-center gap-4 rounded-t-lg bg-primary/10 p-10 md:grid-cols-2">
+    <footer className="bg-primary/10">
+      <div className="container grid items-center gap-4 rounded-t-lg p-10 md:grid-cols-2">
         <div className="space-y-6">
           <Image
             src="/GPTlogo.svg"
             alt="logo"
-            width={90}
-            height={50}
+            width={70}
+            height={60}
+            style={{ width: 70, height: 60 }}
+            unoptimized
             priority
-            style={{ height: "auto" }}
           />
           <p className="max-w-[40ch] text-balance text-muted-foreground">
             خطوتك نحو المستقبل تبدأ هنا: تعلم تطوير الويب، الموبايل، والبرمجة

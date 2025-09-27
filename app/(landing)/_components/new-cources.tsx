@@ -8,12 +8,12 @@ import { courses } from "./data";
 export const NewCources = async () => {
   return (
     <div className="container space-y-16 py-22">
-      <h2 className="font-bold text-4xl">اجدد الدورات</h2>
+      <h2 className="text-center font-bold text-4xl">اجدد الدورات</h2>
       <div className="grid auto-rows-fr grid-cols-1 gap-4 lg:grid-cols-3 min-[630px]:grid-cols-2">
         {courses.map((cource) => (
           <div
             key={cource.id}
-            className="hover:-translate-y-2 flex h-full flex-col gap-4 rounded-xl border transition-transform"
+            className="hover:-translate-y-2 flex h-full flex-col gap-4 rounded-xl border shadow transition-transform"
           >
             <Image
               src={cource.image}

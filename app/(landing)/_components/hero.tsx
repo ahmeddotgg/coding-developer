@@ -1,6 +1,8 @@
 import { ArrowUpLeft, CircleChevronLeft } from "lucide-react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const Hero = () => {
   return (
@@ -17,21 +19,23 @@ export const Hero = () => {
             خبراء في مجال تطوير البرمجيات.
           </p>
           <div className="flex flex-col items-center justify-center gap-2 md:justify-start min-[400px]:flex-row min-[400px]:[&>button]:w-fit">
-            <Button
-              className="group w-full cursor-pointer bg-gradient-to-l from-primary to-indigo-500 min-[400px]:px-12!"
-              size="lg"
+            <Link
+              href="/sign-in"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "group bg-gradient-to-l from-primary to-indigo-500 text-background hover:text-background min-[400px]:px-12!",
+              )}
             >
               أبدا الان
               <CircleChevronLeft className="group-hover:-translate-x-2 size-5 transition-transform" />
-            </Button>
-            <Button
-              className="w-full cursor-pointer"
-              variant="outline"
-              size="lg"
+            </Link>
+            <Link
+              href="/courses"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
               تصفح الدورات
               <ArrowUpLeft className="size-5" />
-            </Button>
+            </Link>
           </div>
         </div>
 

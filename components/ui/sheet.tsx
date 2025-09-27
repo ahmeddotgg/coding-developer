@@ -101,10 +101,11 @@ function SheetHeader({
       <Image
         src="/GPTlogo.svg"
         alt="logo"
-        width={62}
-        height={80}
+        width={59}
+        height={48}
+        style={{ width: 59, height: 48 }}
+        unoptimized
         priority
-        style={{ height: "auto" }}
       />
       <div className="sr-only">{children}</div>
     </div>

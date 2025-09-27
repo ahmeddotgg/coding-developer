@@ -19,11 +19,12 @@ export const Header = () => {
           <Image
             src="/GPTlogo.svg"
             alt="logo"
-            width={62}
-            height={80}
-            priority
-            style={{ height: "auto" }}
+            width={59}
+            height={48}
+            style={{ width: 59, height: 48 }}
+            unoptimized
             className="ms-auto ms:me-0"
+            priority
           />
 
           <div

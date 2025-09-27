@@ -35,7 +35,12 @@ export default function Page() {
           </div>
         </div>
       </SidebarInset>
-      <AppSidebar variant="inset" collapsible="icon" dir="rtl" side="right" />
+      <AppSidebar
+        variant="inset"
+        collapsible="offcanvas"
+        dir="rtl"
+        side="right"
+      />
     </SidebarProvider>
   );
 }
