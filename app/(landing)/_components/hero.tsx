@@ -23,7 +23,7 @@ export const Hero = () => {
               href="/sign-in"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "group bg-gradient-to-l from-primary to-indigo-500 text-background hover:text-background min-[400px]:px-12!",
+                "group w-full bg-gradient-to-l from-primary to-indigo-500 text-background hover:text-background min-[400px]:w-fit min-[400px]:px-12!",
               )}
             >
               أبدا الان
@@ -31,7 +31,10 @@ export const Hero = () => {
             </Link>
             <Link
               href="/courses"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "w-full min-[400px]:w-fit",
+              )}
             >
               تصفح الدورات
               <ArrowUpLeft className="size-5" />

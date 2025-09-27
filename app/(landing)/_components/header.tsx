@@ -12,7 +12,7 @@ export const Header = () => {
 
   return (
     <Headroom>
-      <div className="bg-white">
+      <div className="bg-white shadow">
         <div className="container flex h-20 items-center gap-2 font-semibold sm:gap-6">
           <MobileMenu />
 
