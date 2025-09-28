@@ -2,40 +2,40 @@ import { IconCashBanknote } from "@tabler/icons-react";
 import { Clock } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { courses } from "../../_components/data";
+import { diplomas } from "../../_components/data";
 
-export default async function CourcePage({
+export default async function DiplomaPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const course = courses.find((c) => c.id === Number(id));
+  const diploma = diplomas.find((c) => c.id === Number(id));
 
-  if (!course) return "Not Found";
+  if (!diploma) return "Not Found";
 
   return (
     <div className="container grid grid-cols-2 gap-4">
       <div className="space-y-8">
-        <h1 className="max-w-[40ch] font-bold text-4xl">{course?.title}</h1>
+        <h1 className="max-w-[40ch] font-bold text-4xl">{diploma?.title}</h1>
         <div>
-          <p>🎯 تفاصيل الدورة:</p>
-          <p>{course.description}</p>
+          <p>🎯 تفاصيل الدبلومة:</p>
+          <p>{diploma.description}</p>
         </div>
       </div>
       <div className="space-y-3 overflow-hidden rounded-2xl bg-background shadow-2xl">
         <Image
-          src={course.image}
+          src={diploma.image}
           height={250}
           width={350}
-          alt={course.title}
+          alt={diploma.title}
           className="w-full rounded-lg object-cover"
           loading="lazy"
         />
         <div className="space-y-3 p-4">
           <p className="text-muted-foreground text-sm">
             <Clock className="ms-2 inline-flex size-3.8" />
-            {course.duration}
+            {diploma.duration}
           </p>
 
           <div className="flex items-center gap-2">
@@ -44,16 +44,16 @@ export default async function CourcePage({
               <h2
                 className={cn(
                   "font-semibold text-lg",
-                  course.discountPrice &&
+                  diploma.discountPrice &&
                     "text-muted-foreground text-sm line-through",
                 )}
               >
-                {course.price}
+                {diploma.price}
               </h2>
 
-              {course.discountPrice && (
+              {diploma.discountPrice && (
                 <h2 className={cn("font-bold text-2xl text-primary")}>
-                  {course.discountPrice}
+                  {diploma.discountPrice}
                 </h2>
               )}
             </div>
