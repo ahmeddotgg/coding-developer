@@ -29,19 +29,19 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           />
         </section>
 
-        <section className="flex flex-col">
+        <section className="flex flex-1 flex-col items-center justify-center gap-4">
           <Link href="/" className="self-center">
             <Image
               src="/GPTlogo.svg"
               alt="logo"
-              width={150}
-              height={150}
-              className="h-[150px] w-[150px]"
+              width={120}
+              height={90}
+              style={{ width: 120, height: 90 }}
+              unoptimized
+              priority
             />
           </Link>
-          <div className="flex flex-1 items-center justify-center">
-            {children}
-          </div>
+          {children}
         </section>
       </body>
     </html>

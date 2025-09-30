@@ -68,7 +68,9 @@ function SignInForm() {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-full">
+          تأكيد
+        </Button>
 
         <p className="text-center text-sm">
           ليس لديك حساب؟{" "}
@@ -160,7 +162,9 @@ function SignUpForm() {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-full">
+          تأكيد
+        </Button>
 
         <p className="text-center text-sm">
           لديك حساب بالفعل؟{" "}

@@ -130,6 +130,10 @@
   }
 }
 
+a.active {
+  @apply text-primary;
+}
+
 a.active::before {
   content: "";
   position: absolute;

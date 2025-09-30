@@ -1,6 +1,7 @@
 import { IconCashBanknote } from "@tabler/icons-react";
 import { Clock } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { diplomas } from "../../_components/data";
 
@@ -58,6 +59,13 @@ export default async function DiplomaPage({
               )}
             </div>
           </div>
+
+          <Button
+            size="lg"
+            className="w-full bg-gradient-to-l from-primary to-indigo-500 text-background hover:text-background"
+          >
+            سجل الأن
+          </Button>
         </div>
       </div>
     </div>
