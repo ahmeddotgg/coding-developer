@@ -1,8 +1,8 @@
 "use client";
 
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
+import { Menu } from "lucide-react";
+import { Slot as SlotPrimitive } from "radix-ui";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,7 +27,6 @@ import { cn } from "@/lib/utils";
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
-const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
@@ -184,15 +183,11 @@ function Sidebar({
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetContent
+          dir="rtl"
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
-          style={
-            {
-              "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-            } as React.CSSProperties
-          }
+          className="bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
           side={side}
         >
           <SheetHeader className="sr-only">
@@ -264,16 +259,16 @@ function SidebarTrigger({
     <Button
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
-      variant="ghost"
+      variant="outline"
       size="icon"
-      className={cn("size-7", className)}
+      className={cn("size-8", className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <Menu className="size-5" />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
@@ -398,7 +393,7 @@ function SidebarGroupLabel({
   asChild = false,
   ...props
 }: React.ComponentProps<"div"> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "div";
+  const Comp = asChild ? SlotPrimitive.Slot : "div";
 
   return (
     <Comp
@@ -419,7 +414,7 @@ function SidebarGroupAction({
   asChild = false,
   ...props
 }: React.ComponentProps<"button"> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
 
   return (
     <Comp
@@ -508,7 +503,7 @@ function SidebarMenuButton({
   isActive?: boolean;
   tooltip?: string | React.ComponentProps<typeof TooltipContent>;
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
   const { isMobile, state } = useSidebar();
 
   const button = (
@@ -517,7 +512,15 @@ function SidebarMenuButton({
       data-sidebar="menu-button"
       data-size={size}
       data-active={isActive}
-      className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+      className={cn(
+        sidebarMenuButtonVariants({
+          variant,
+          size,
+          className: "font-semibold! hover:bg-sky-400/5! [&>svg]:size-5",
+        }),
+        className,
+        isActive && "bg-sky-400/10! text-sky-700! hover:bg-sky-400/10!",
+      )}
       {...props}
     />
   );
@@ -554,7 +557,7 @@ function SidebarMenuAction({
   asChild?: boolean;
   showOnHover?: boolean;
 }) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
 
   return (
     <Comp
@@ -643,7 +646,7 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       className={cn(
-        "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-sidebar-border border-l px-2.5 py-0.5",
+        "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-sky-600/70 border-r-2 px-2.5 py-0.5",
         "group-data-[collapsible=icon]:hidden",
         className,
       )}
@@ -677,7 +680,7 @@ function SidebarMenuSubButton({
   size?: "sm" | "md";
   isActive?: boolean;
 }) {
-  const Comp = asChild ? Slot : "a";
+  const Comp = asChild ? SlotPrimitive.Slot : "a";
 
   return (
     <Comp
