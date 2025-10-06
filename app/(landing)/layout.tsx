@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { estedad, geistSans } from "@/lib/constants";
-import { Header } from "./_components/header";
+import { LandingHeader } from "./_components/landing-header";
 import "../globals.css";
 import { Toaster } from "sonner";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Footer } from "./_components/footer";
+import { LandingSidebar } from "./_components/landing-sidebar";
 
 export const metadata: Metadata = {
   title: {
@@ -17,13 +19,16 @@ export const metadata: Metadata = {
 
 export default function LandingLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" dir="rtl" data-scroll-behavior="smooth">
-      <body
-        className={`${geistSans.variable} ${estedad.variable} flex min-h-svh flex-col`}
-      >
-        <Header />
-        <main className="flex-1 py-12">{children}</main>
-        <Footer />
+    <html lang="en" dir="rtl" data-scroll-behavior="smooth" className="dark">
+      <body className={`${geistSans.variable} ${estedad.variable}`}>
+        <SidebarProvider>
+          <SidebarInset dir="rtl">
+            <LandingHeader />
+            <main className="flex-1 py-18">{children}</main>
+            <Footer />
+          </SidebarInset>
+          <LandingSidebar />
+        </SidebarProvider>
         <Toaster />
       </body>
     </html>

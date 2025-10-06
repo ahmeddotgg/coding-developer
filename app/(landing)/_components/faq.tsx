@@ -1,11 +1,11 @@
 import {
-  type Icon,
-  IconAward,
-  IconClock,
-  IconCode,
-  IconDeviceGamepad,
-  IconSchool,
-} from "@tabler/icons-react";
+  Award,
+  Clock,
+  Code2,
+  Gamepad2,
+  type LucideIcon,
+  School,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -18,7 +18,7 @@ interface FAQItem {
   question: string;
   answer: [{ item_1: string; item_2?: string; item_3?: string }];
   intro: string;
-  icon: Icon;
+  icon: LucideIcon;
 }
 
 export const Faq = () => {
@@ -41,7 +41,7 @@ const faqData: FAQItem[] = [
           "نقدم كورسات متنوعة تشمل: أساسيات البرمجة، تطوير الويب (Front-End و Back-End)، تطوير تطبيقات الموبايل، إضافة إلى كورسات خاصة للأطفال لتعليم البرمجة بطريقة ممتعة وتفاعلية.",
       },
     ],
-    icon: IconCode,
+    icon: Code2,
   },
   {
     id: "courses-types",
@@ -53,7 +53,7 @@ const faqData: FAQItem[] = [
           "كورساتنا تركّز بشكل كبير على التدريب العملي. الطالب بيشتغل على مشاريع حقيقية + تدريبات بعد الكورس تساعده يبني CV و Portfolio قوي.",
       },
     ],
-    icon: IconSchool,
+    icon: School,
   },
   {
     id: "courses-duration",
@@ -67,7 +67,7 @@ const faqData: FAQItem[] = [
         item_3: "كورسات الأطفال: 4 مستويات، مدتها شهرين + شهرين تدريب مجاني.",
       },
     ],
-    icon: IconClock,
+    icon: Clock,
   },
   {
     id: "certificates",
@@ -80,7 +80,7 @@ const faqData: FAQItem[] = [
         item_3: "تقرير تقني بالمشاريع التي قمت بتنفيذها.",
       },
     ],
-    icon: IconAward,
+    icon: Award,
   },
   {
     id: "kids-courses",
@@ -92,7 +92,7 @@ const faqData: FAQItem[] = [
           "الأطفال يتعلموا من خلال Scratch Jr و Scratch (بناء ألعاب وقصص تفاعلية)، ثم أساسيات تصميم المواقع، وأخيرًا مشروع تخرج يعرضوه على الأهل أو الفريق مع شهادة ومكافأة تحفيزية.",
       },
     ],
-    icon: IconDeviceGamepad,
+    icon: Gamepad2,
   },
 ];
 

@@ -13,19 +13,24 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import { MobileMenu } from "./mobile-menu";
 import { services } from "./services";
 
-export const Header = () => {
+export const LandingHeader = () => {
   const pathname = usePathname();
 
   return (
-    <Headroom>
-      <div className="bg-white shadow">
+    <Headroom
+      onUnpin={() => {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+      }}
+    >
+      <div className="bg-background shadow">
         <div className="container flex h-20 items-center gap-2 font-semibold sm:gap-6">
-          <MobileMenu />
-
+          <SidebarTrigger className="min-md:hidden" />
           <Link href="/" className="flex-1 md:flex-none">
             <Image
               src="/GPTlogo.svg"
