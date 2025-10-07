@@ -22,14 +22,14 @@ export default async function AdminLayout({
   const cookieStore = await cookies();
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
   return (
-    <html lang="en" data-scroll-behavior="smooth" className="dark">
+    <html lang="en" data-scroll-behavior="smooth" dir="rtl">
       <body className={`${geistSans.variable} ${estedad.variable}`}>
         <SidebarProvider defaultOpen={defaultOpen}>
-          <SidebarInset dir="rtl">
+          <AdminSidebar variant="inset" side="right" />
+          <SidebarInset>
             <AdminHeader />
             {children}
           </SidebarInset>
-          <AdminSidebar variant="floating" dir="rtl" side="right" />
         </SidebarProvider>
       </body>
     </html>

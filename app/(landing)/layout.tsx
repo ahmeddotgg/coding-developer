@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { estedad, geistSans } from "@/lib/constants";
-import { LandingHeader } from "./_components/landing-header";
 import "../globals.css";
 import { Toaster } from "sonner";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Footer } from "./_components/footer";
+import { LandingHeader } from "./_components/landing-header";
 import { LandingSidebar } from "./_components/landing-sidebar";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function LandingLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" dir="rtl" data-scroll-behavior="smooth" className="dark">
+    <html lang="en" dir="rtl" data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${estedad.variable}`}>
         <SidebarProvider>
           <SidebarInset dir="rtl">
