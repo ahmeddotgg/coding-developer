@@ -15,7 +15,11 @@
     "clsx": "^2.1.1",
     "glob": "^11.0.3",
     "lucide-react": "^0.544.0",
+<<<<<<< HEAD
     "next": "15.5.4",
+=======
+    "next": "15.5.3",
+>>>>>>> be764900ead7799d51eb46dd8942fc2df48bec9a
     "next-themes": "^0.4.6",
     "radix-ui": "latest",
     "react": "19.1.1",
