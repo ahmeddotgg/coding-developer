@@ -14,20 +14,20 @@ export const metadata: Metadata = {
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" dir="rtl" data-scroll-behavior="smooth">
+    <html lang="en" dir="rtl" className="dark" data-scroll-behavior="smooth">
       <body
-        className={`${geistSans.variable} ${estedad.variable} grid min-h-svh gap-4 p-4 lg:grid-cols-2`}
+        className={`${geistSans.variable} ${estedad.variable} grid min-h-svh gap-8 p-4 lg:grid-cols-2 lg:p-16`}
       >
-        <section className="relative hidden overflow-hidden rounded-xl lg:block">
+        <div className="relative hidden lg:block">
           <Image
             src="/code-unsplash.jpg"
             alt="Image"
-            width={6336}
-            height={9504}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority
-            className="absolute inset-0 h-full w-full object-cover"
+            className="hidden rounded-2xl object-cover lg:block"
           />
-        </section>
+        </div>
 
         <section className="flex flex-1 flex-col items-center justify-center gap-4">
           <Link href="/" className="self-center">

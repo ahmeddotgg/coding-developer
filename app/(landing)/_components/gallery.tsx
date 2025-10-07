@@ -1,9 +1,17 @@
 import { glob } from "glob";
+import Image from "next/image";
 import sharp from "sharp";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { GalleryImage } from "./gallery-image";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-type ImageMetadata = {
+export type ImageMetadata = {
   src: string;
   width: number;
   height: number;
@@ -33,7 +41,12 @@ async function fetchImageMetadata(pattern: string): Promise<ImageMetadata[]> {
           "base64",
         )}`;
 
-        return { src, width: metadata.width, height: metadata.height, base64 };
+        return {
+          src,
+          width: metadata.width,
+          height: metadata.height,
+          base64,
+        };
       } catch (err) {
         console.warn(`Skipping image ${file}:`, err);
         return null;
@@ -77,18 +90,41 @@ export const Gallery = async () => {
         key={src}
         className="lg:nth-last-[1]:col-span-2 lg:nth-last-[2]:col-span-2 lg:nth-last-[1]:block min-[660px]:nth-last-[1]:hidden"
       >
-        <AspectRatio
-          ratio={3 / 2}
-          className="group relative overflow-hidden rounded-lg"
-        >
-          <GalleryImage
-            src={src}
-            width={width}
-            height={height}
-            altText={altText}
-            base64={base64}
-          />
-        </AspectRatio>
+        <Dialog>
+          <DialogTrigger asChild>
+            <AspectRatio
+              ratio={3 / 2}
+              className="group relative cursor-zoom-in overflow-hidden rounded-lg"
+            >
+              <Image
+                src={src}
+                placeholder="blur"
+                blurDataURL={base64}
+                height={height}
+                width={width}
+                alt={altText}
+                className="h-full w-full rounded-lg object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
+                loading="lazy"
+              />
+            </AspectRatio>
+          </DialogTrigger>
+          <DialogContent className="flex min-w-[70vw]! cursor-zoom-out items-center justify-center p-0 [&>button]:rounded-full [&>button]:bg-black/70 [&>button]:p-1">
+            <DialogTitle className="sr-only">{altText}</DialogTitle>
+            <DialogDescription className="sr-only">{altText}</DialogDescription>
+            <DialogClose asChild>
+              <Image
+                src={src}
+                placeholder="blur"
+                blurDataURL={base64}
+                height={height}
+                width={width}
+                alt={altText}
+                className="h-full w-full rounded-lg object-contain"
+                loading="lazy"
+              />
+            </DialogClose>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   });
