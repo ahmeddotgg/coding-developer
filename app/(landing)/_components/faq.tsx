@@ -108,19 +108,17 @@ function AcademyAccordion() {
           <AccordionItem
             key={faq.id}
             value={faq.id}
-            className="overflow-hidden rounded-xl border-2 border-border/50 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-md"
+            className="rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
           >
-            <AccordionTrigger className="group px-6 py-5 hover:no-underline">
-              <div className="flex w-full items-center gap-4 text-right">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-b from-primary to-blue-400 text-background shadow-md transition-transform duration-200 group-hover:scale-105">
-                  {faq.icon && <faq.icon />}
-                </div>
-                <div className="flex-1">
-                  <h3 className="mb-1 font-semibold text-foreground text-lg transition-colors group-hover:text-primary">
-                    {faq.question}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">{faq.intro}</p>
-                </div>
+            <AccordionTrigger className="group flex w-full items-center gap-4 px-6 py-5 text-right hover:no-underline hover:ring-[3px] hover:ring-primary/50 focus-visible:ring-primary/50">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-b from-primary to-blue-400 text-background shadow-md transition-transform duration-200 group-hover:scale-105">
+                {faq.icon && <faq.icon />}
+              </div>
+              <div className="flex-1">
+                <h3 className="mb-1 font-semibold text-foreground text-lg transition-colors group-hover:text-primary">
+                  {faq.question}
+                </h3>
+                <p className="text-muted-foreground text-sm">{faq.intro}</p>
               </div>
             </AccordionTrigger>
             <AccordionContent className="max-w-[60ch] px-6 pb-6">

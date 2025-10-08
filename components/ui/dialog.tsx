@@ -58,7 +58,6 @@ function DialogContent({
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
       <DialogPrimitive.Content
-        onOpenAutoFocus={(e) => e.preventDefault()}
         tabIndex={undefined}
         data-slot="dialog-content"
         className={cn(

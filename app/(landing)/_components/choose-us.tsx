@@ -47,7 +47,7 @@ export const ChooseUs = () => {
                 alt={item.title}
                 width={700}
                 height={700}
-                className="me-auto flex-1 md:max-w-[170px]"
+                className="ms-auto flex-1 md:max-w-[170px]"
               />
             </div>
           ))}
