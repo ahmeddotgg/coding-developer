@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" dir="rtl" className="dark" data-scroll-behavior="smooth">
+    <html lang="en" dir="rtl" data-scroll-behavior="smooth">
       <body
         className={`${geistSans.variable} ${estedad.variable} grid min-h-svh gap-8 p-4 lg:grid-cols-2 lg:p-16`}
       >

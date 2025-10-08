@@ -98,8 +98,8 @@ export function LandingSidebar({
                       {item.items?.length ? (
                         <>
                           {item.title}
-                          <Plus className="me-auto group-data-[state=open]/collapsible:hidden" />
-                          <Minus className="me-auto group-data-[state=closed]/collapsible:hidden" />
+                          <Plus className="ms-auto group-data-[state=open]/collapsible:hidden" />
+                          <Minus className="ms-auto group-data-[state=closed]/collapsible:hidden" />
                         </>
                       ) : (
                         <Link

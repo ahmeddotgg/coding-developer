@@ -108,7 +108,7 @@ export const Gallery = async () => {
               />
             </AspectRatio>
           </DialogTrigger>
-          <DialogContent className="flex min-w-[70vw]! cursor-zoom-out items-center justify-center p-0 [&>button]:rounded-full [&>button]:bg-black/70 [&>button]:p-1">
+          <DialogContent className="flex min-w-[50vw]! cursor-zoom-out items-center justify-center p-0 [&>button]:rounded-full [&>button]:bg-black/70 [&>button]:p-1">
             <DialogTitle className="sr-only">{altText}</DialogTitle>
             <DialogDescription className="sr-only">{altText}</DialogDescription>
             <DialogClose asChild>

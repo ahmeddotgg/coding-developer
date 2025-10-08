@@ -28,7 +28,7 @@ export default function ServeicesPage() {
                 </h2>
               </div>
               <p className="text-muted-foreground">{service.subTitle}</p>
-              <ul className="me-5 list-disc">
+              <ul className="ms-5 list-disc">
                 {service.description.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
