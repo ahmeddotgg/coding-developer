@@ -126,7 +126,6 @@
     @apply bg-background text-foreground antialiased;
   }
   html {
-    overflow-y: scroll;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
