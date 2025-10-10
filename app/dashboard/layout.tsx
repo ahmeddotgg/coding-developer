@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import type { ReactNode } from "react";
-import { AdminHeader } from "@/app/(admin)/_components/admin-header";
-import { AdminSidebar } from "@/app/(admin)/_components/admin-sidebar";
+import { AdminHeader } from "@/app/dashboard/_components/admin-header";
+import { AdminSidebar } from "@/app/dashboard/_components/admin-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { estedad, geistSans } from "@/lib/constants";
 import "../globals.css";
