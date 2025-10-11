@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   allowedDevOrigins: ["united-present-hyena.ngrok-free.app"],
+  reactStrictMode: false,
 };
 
 export default nextConfig;
