@@ -1,6 +1,10 @@
 "use client";
 
-import { IconCirclePlus, IconDashboard } from "@tabler/icons-react";
+import {
+  IconCirclePlus,
+  IconDashboard,
+  IconShoppingCart,
+} from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
@@ -20,6 +24,11 @@ const links = [
     title: "لوحة التحكم",
     url: "/dashboard",
     icon: IconDashboard,
+  },
+  {
+    title: "المنتجات",
+    url: "/dashboard/products",
+    icon: IconShoppingCart,
   },
   {
     title: "اضافة منتج",
