@@ -129,6 +129,10 @@
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
+  html body[data-scroll-locked] {
+    overflow: visible !important;
+    margin-right: 0 !important;
+  }
 }
 
 a.active {
