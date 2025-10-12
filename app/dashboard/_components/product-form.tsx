@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CloudUpload, X } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -29,60 +28,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Editor } from "./editor";
-
-const DescritionContent = `
-    <h2>
-      Hi there,
-    </h2>
-    <p>
-      this is a basic <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-    </p>
-    <ul>
-      <li>
-        That’s a bullet list with one…
-      </li>
-      <li>
-        …or two list items.
-      </li>
-    </ul>
-    <p>
-      I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
-    </p>
-    <blockquote>
-      Wow, that’s amazing. Good work, boy! 👏
-      <br />
-      — Mom
-    </blockquote>
-  `;
-
-const ProductFormSchema = z.object({
-  title: z.string().min(1, "اسم المنتج مطلوب"),
-  description: z.string().min(100, "وصف المنتج يجب أن يكون على الأقل 100 أحرف"),
-  duration: z.string().min(1, "المدة مطلوبة"),
-  category: z.string().min(1, "القسم مطلوب"),
-  price: z.coerce
-    .number<number>({ error: "السعر مطلوب" })
-    .positive("السعر يجب أن يكون رقماً موجباً"),
-  image: z
-    .array(z.custom<File>())
-    .min(1, "يرجى اختيار صورة")
-    .max(1, "يرجى اختيار صورة واحدة فقط")
-    .refine((files) => files.every((file) => file.size <= 5 * 1024 * 1024), {
-      message: "حجم الملف يجب أن يكون أقل من 5 ميجابايت",
-      path: ["image"],
-    }),
-});
-
-type ProductFormValues = z.infer<typeof ProductFormSchema>;
+import { ProductFormSchema } from "@/lib/schema";
+import type { ProductFormValues } from "@/lib/types";
+import { TipTapEditor } from "./editor";
 
 export function ProductForm() {
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(ProductFormSchema),
     defaultValues: {
       title: "",
-      description: DescritionContent,
-      price: undefined,
+      description: "",
+      price: 0,
+      discount: 0,
       duration: "",
       category: "",
       image: [],
@@ -97,93 +54,169 @@ export function ProductForm() {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
       <FieldGroup>
-        <Controller
-          name="title"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="title">Product Title</FieldLabel>
-              <Input {...field} id="title" aria-invalid={fieldState.invalid} />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
+        <div className="grid grid-cols-1 gap-x-2 gap-y-8 md:space-y-0 lg:grid-cols-3 min-[370px]:grid-cols-2">
+          <Controller
+            name="title"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field
+                data-invalid={fieldState.invalid}
+                className="lg:col-span-1 min-[370px]:col-span-2"
+              >
+                <FieldLabel htmlFor="title">اسم المنتج</FieldLabel>
+                <Input
+                  {...field}
+                  id="title"
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+          <Controller
+            name="price"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="price">سعر المنتج</FieldLabel>
+                <Input
+                  {...field}
+                  id="price"
+                  type="number"
+                  aria-invalid={fieldState.invalid}
+                  placeholder={`"5000"`}
+                  value={field.value === 0 ? "" : field.value}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+          <Controller
+            name="discount"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="discount">
+                  السعر بعد الخصم (اختياري)
+                </FieldLabel>
+                <Input
+                  {...field}
+                  id="discount"
+                  type="number"
+                  aria-invalid={fieldState.invalid}
+                  placeholder={`"3000"`}
+                  value={field.value === 0 ? "" : field.value}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+        </div>
 
         <Controller
           name="description"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="description">Product Description</FieldLabel>
-              <Editor
+            <Field
+              data-invalid={fieldState.invalid}
+              className="data-[invalid=true]:text-current data-[invalid=true]:[&>label]:text-destructive"
+            >
+              <FieldLabel htmlFor="description">وصف المنتج</FieldLabel>
+              <TipTapEditor
                 invalid={fieldState.invalid}
                 content={field.value}
-                onChange={(value: string) => field.onChange(value)}
+                onChange={field.onChange}
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
 
-        <Controller
-          name="price"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="price">Product Price</FieldLabel>
-              <Input
-                {...field}
-                id="price"
-                type="number"
-                aria-invalid={fieldState.invalid}
-              />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
-
-        <Controller
-          name="duration"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="duration">Product Duration</FieldLabel>
-              <Input
-                {...field}
-                id="duration"
-                aria-invalid={fieldState.invalid}
-              />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
-
-        <Controller
-          name="category"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="image">القسم</FieldLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                dir="rtl"
+        <div className="grid grid-cols-1 gap-x-2 gap-y-8 md:space-y-0 lg:grid-cols-3 min-[370px]:grid-cols-2">
+          <Controller
+            name="duration"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field
+                data-invalid={fieldState.invalid}
+                className="lg:col-span-1 min-[370px]:col-span-2"
               >
-                <SelectTrigger aria-invalid={fieldState.invalid}>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Fundementals">Fundementals</SelectItem>
-                  <SelectItem value="Fullstack">Fullstack</SelectItem>
-                  <SelectItem value="Frontend">Frontend</SelectItem>
-                  <SelectItem value="Backend">Backend</SelectItem>
-                  <SelectItem value="Kids">Kids</SelectItem>
-                </SelectContent>
-              </Select>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
+                <FieldLabel htmlFor="duration">مدة المنتج</FieldLabel>
+                <Input
+                  {...field}
+                  id="duration"
+                  aria-invalid={fieldState.invalid}
+                  placeholder={`"3 شهور"`}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+          <Controller
+            name="category"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="category">القسم</FieldLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  dir="rtl"
+                >
+                  <SelectTrigger aria-invalid={fieldState.invalid}>
+                    <SelectValue placeholder={`"Web Development"`} />
+                  </SelectTrigger>
+                  <SelectContent dir="ltr">
+                    <SelectItem value="Web Development">
+                      Web Development
+                    </SelectItem>
+                    <SelectItem value="Fundementals">Fundementals</SelectItem>
+                    <SelectItem value="Fullstack">Fullstack</SelectItem>
+                    <SelectItem value="Frontend">Frontend</SelectItem>
+                    <SelectItem value="Backend">Backend</SelectItem>
+                    <SelectItem value="Kids">Kids</SelectItem>
+                  </SelectContent>
+                </Select>
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+          <Controller
+            name="type"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="discount">نوع المنتج</FieldLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  dir="rtl"
+                >
+                  <SelectTrigger aria-invalid={fieldState.invalid}>
+                    <SelectValue placeholder={`"دبلومة"`} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="دورة">دورة</SelectItem>
+                    <SelectItem value="دبلومة">دبلومة</SelectItem>
+                  </SelectContent>
+                </Select>
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+        </div>
 
         <Controller
           name="image"
@@ -234,8 +267,12 @@ export function ProductForm() {
         />
       </FieldGroup>
 
-      <Button type="submit" disabled={!form.formState.isDirty}>
-        Create Product
+      <Button
+        type="submit"
+        className="w-full"
+        disabled={!form.formState.isDirty}
+      >
+        تأكيد
       </Button>
     </form>
   );
