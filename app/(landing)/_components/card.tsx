@@ -46,7 +46,7 @@ export default function CourseCard({
           href={type === "course" ? `/courses/${id}` : `/diplomas/${id}`}
           className={cn(
             buttonVariants(),
-            "w-full cursor-pointer rounded-full bg-gradient-to-l from-primary to-indigo-500",
+            "w-full cursor-pointer rounded-full bg-gradient-to-bl from-primary to-indigo-400 font-semibold text-background hover:text-background",
           )}
         >
           سجل الأن

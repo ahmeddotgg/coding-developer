@@ -19,12 +19,8 @@ export default async function CourcePage({
   if (!course) return "Not Found";
 
   return (
-    <div className="container grid grid-cols-2 gap-4">
-      <div className="space-y-8">
-        <h1 className="max-w-[40ch] font-bold text-4xl">{course?.title}</h1>
-        <div className="prose prose-sm">{parse(course.description)}</div>
-      </div>
-      <div className="space-y-12">
+    <div className="container space-y-8 md:grid md:grid-cols-2 md:grid-rows-1 md:gap-8 md:space-y-0">
+      <div className="space-y-8 md:col-start-2 md:row-start-1">
         <Image
           src={course.image}
           height={250}
@@ -68,6 +64,12 @@ export default async function CourcePage({
             سجل الأن
           </Button>
         </div>
+      </div>
+      <div className="space-y-6 md:col-start-1 md:row-start-1">
+        <h1 className="text-balance font-bold text-2xl md:text-4xl">
+          {course?.title}
+        </h1>
+        <div className="prose prose-sm">{parse(course.description)}</div>
       </div>
     </div>
   );

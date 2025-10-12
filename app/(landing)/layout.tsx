@@ -24,7 +24,7 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
         <SidebarProvider>
           <SidebarInset dir="rtl">
             <LandingHeader />
-            <main className="flex-1 py-18">{children}</main>
+            <main className="flex-1 py-4 sm:py-18">{children}</main>
             <Footer />
           </SidebarInset>
           <LandingSidebar />
