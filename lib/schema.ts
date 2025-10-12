@@ -1,5 +1,7 @@
 import * as z from "zod";
+import { stripHtml } from "./utils";
 
+// auth schema
 export const SignInSchema = z.object({
   email: z.email({ error: "البريد الإلكتروني غير صالح" }),
   password: z
@@ -22,3 +24,43 @@ export const SignUpSchema = z
     error: "كلمات المرور غير متطابقة",
     path: ["confirmPassword"],
   });
+// auth schema
+
+// product form schema
+export const ProductFormSchema = z
+  .object({
+    title: z.string().min(10, "اسم المنتج مطلوب"),
+    description: z
+      .string()
+      .refine(
+        (val) => stripHtml(val).length >= 100,
+        "وصف المنتج يجب أن يكون على الأقل 100 حرف",
+      ),
+    duration: z.string().min(1, "المدة مطلوبة"),
+    category: z.string().min(1, "القسم مطلوب"),
+    price: z.coerce
+      .number<number>({ error: "السعر مطلوب" })
+      .positive("السعر يجب أن يكون رقماً موجباً"),
+    discount: z.coerce.number<number>().optional(),
+    image: z
+      .array(z.custom<File>())
+      .min(1, "يرجى اختيار صورة")
+      .max(1, "يرجى اختيار صورة واحدة فقط")
+      .refine((files) => files.every((file) => file.size <= 5 * 1024 * 1024), {
+        message: "حجم الملف يجب أن يكون أقل من 5 ميجابايت",
+        path: ["image"],
+      }),
+    type: z.enum(["دورة", "دبلومة"], { error: "يجب اختيار نوع المنتج" }),
+  })
+  .refine(
+    (data) => {
+      if (!data.discount) return true;
+      if (data.discount === 0) return true;
+      return data.discount > 0 && data.discount <= data.price;
+    },
+    {
+      message: "الخصم يجب أن يكون رقماً موجباً وأقل من أو يساوي السعر",
+      path: ["discount"],
+    },
+  );
+// product form schema
