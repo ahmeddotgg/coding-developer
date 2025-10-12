@@ -1,89 +1,49 @@
-// store/useProductStore.ts
-
 import { create } from "zustand";
-import type { Product } from "@/lib/types";
+import type { ProductFormValues } from "@/lib/types";
 
-type ProductStore = {
+export interface Product extends Omit<ProductFormValues, "image"> {
+  id: number;
+  image: string;
+}
+
+interface ProductState {
   products: Product[];
-  loading: boolean;
-  error: string | null;
-
+  addProduct: (data: ProductFormValues) => Promise<Product>;
   fetchProducts: () => Promise<void>;
-  addProduct: (product: Product) => Promise<void>;
-  updateProduct: (product: Product) => Promise<void>;
-  deleteProduct: (id: number) => Promise<void>;
-};
+}
 
-export const useProductStore = create<ProductStore>((set, get) => ({
+export const useProductStore = create<ProductState>((set) => ({
   products: [],
-  loading: false,
-  error: null,
 
-  // 🔹 Fetch all
+  addProduct: async (data) => {
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === "image" && Array.isArray(value)) {
+        formData.append("image", value[0]);
+      } else {
+        formData.append(key, String(value));
+      }
+    });
+
+    const res = await fetch("/api/products", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || "Failed to add product");
+    }
+
+    const newProduct = await res.json();
+    set((state) => ({ products: [...state.products, newProduct] }));
+    return newProduct;
+  },
+
   fetchProducts: async () => {
-    set({ loading: true, error: null });
-    try {
-      const res = await fetch("/api/products");
-      const data = await res.json();
-      set({ products: data, loading: false });
-    } catch (err) {
-      if (err instanceof Error) {
-        set({ error: err.message, loading: false });
-      }
-    }
-  },
-
-  // 🔹 Add
-  addProduct: async (product) => {
-    try {
-      const res = await fetch("/api/products", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      });
-      const created = await res.json();
-      set({ products: [...get().products, created] });
-    } catch (err) {
-      if (err instanceof Error) {
-        set({ error: err.message });
-      }
-    }
-  },
-
-  // 🔹 Update
-  updateProduct: async (product) => {
-    try {
-      const res = await fetch("/api/products", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      });
-      const updated = await res.json();
-      set({
-        products: get().products.map((p) =>
-          p.id === updated.id ? updated : p,
-        ),
-      });
-    } catch (err) {
-      if (err instanceof Error) {
-        set({ error: err.message });
-      }
-    }
-  },
-
-  // 🔹 Delete
-  deleteProduct: async (id) => {
-    try {
-      await fetch("/api/products", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      set({ products: get().products.filter((p) => p.id !== id) });
-    } catch (err) {
-      if (err instanceof Error) {
-        set({ error: err.message });
-      }
-    }
+    const res = await fetch("/api/products");
+    const products = await res.json();
+    set({ products });
   },
 }));

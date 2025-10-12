@@ -6,6 +6,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Loader } from "lucide-react";
+import { useEffect } from "react";
 import { InputStyles } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/editor-store";
@@ -74,6 +75,12 @@ export const TipTapEditor = ({
       setEditor(editor);
     },
   });
+
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content);
+    }
+  }, [content, editor]);
 
   return (
     <>

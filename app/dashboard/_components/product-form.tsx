@@ -30,9 +30,14 @@ import {
 } from "@/components/ui/select";
 import { ProductFormSchema } from "@/lib/schema";
 import type { ProductFormValues } from "@/lib/types";
+import { useEditorStore } from "@/store/editor-store";
+import { useProductStore } from "@/store/products-store";
 import { TipTapEditor } from "./editor";
 
 export function ProductForm() {
+  const { addProduct } = useProductStore();
+  const { editor } = useEditorStore();
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(ProductFormSchema),
     defaultValues: {
@@ -46,9 +51,15 @@ export function ProductForm() {
     },
   });
 
-  function onSubmit(values: ProductFormValues) {
-    const product = { ...values, id: Date.now() };
-    console.log(product);
+  async function onSubmit(values: ProductFormValues) {
+    try {
+      await addProduct(values);
+      form.reset();
+      editor?.destroy();
+      console.log("submitted successful");
+    } catch (error) {
+      console.error("Failed to add product:", error);
+    }
   }
 
   return (
@@ -270,7 +281,7 @@ export function ProductForm() {
       <Button
         type="submit"
         className="w-full"
-        disabled={!form.formState.isDirty}
+        disabled={!form.formState.isDirty || form.formState.isSubmitting}
       >
         تأكيد
       </Button>
