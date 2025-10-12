@@ -473,7 +473,7 @@ const sidebarMenuButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+        default: "hover:bg-primary/60 hover:text-sidebar-accent-foreground",
         outline:
           "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
       },
@@ -516,10 +516,10 @@ function SidebarMenuButton({
         sidebarMenuButtonVariants({
           variant,
           size,
-          className: "font-semibold! hover:bg-sky-400/5! [&>svg]:size-5",
+          className: "font-semibold! [&>svg]:size-5",
         }),
         className,
-        isActive && "bg-sky-400/10! text-sky-700! hover:bg-sky-400/10!",
+        isActive && "bg-primary/60! hover:bg-primary/50!",
       )}
       {...props}
     />

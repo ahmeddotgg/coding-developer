@@ -29,10 +29,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Editor } from "./editor";
+
+const DescritionContent = `
+    <h2>
+      Hi there,
+    </h2>
+    <p>
+      this is a basic <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
+    </p>
+    <ul>
+      <li>
+        That’s a bullet list with one…
+      </li>
+      <li>
+        …or two list items.
+      </li>
+    </ul>
+    <p>
+      I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
+    </p>
+    <blockquote>
+      Wow, that’s amazing. Good work, boy! 👏
+      <br />
+      — Mom
+    </blockquote>
+  `;
 
 const ProductFormSchema = z.object({
   title: z.string().min(1, "اسم المنتج مطلوب"),
-  description: z.string().min(10, "وصف المنتج يجب أن يكون على الأقل 10 أحرف"),
+  description: z.string().min(100, "وصف المنتج يجب أن يكون على الأقل 100 أحرف"),
   duration: z.string().min(1, "المدة مطلوبة"),
   category: z.string().min(1, "القسم مطلوب"),
   price: z.coerce
@@ -44,7 +70,7 @@ const ProductFormSchema = z.object({
     .max(1, "يرجى اختيار صورة واحدة فقط")
     .refine((files) => files.every((file) => file.size <= 5 * 1024 * 1024), {
       message: "حجم الملف يجب أن يكون أقل من 5 ميجابايت",
-      path: ["files"],
+      path: ["image"],
     }),
 });
 
@@ -55,7 +81,7 @@ export function ProductForm() {
     resolver: zodResolver(ProductFormSchema),
     defaultValues: {
       title: "",
-      description: "",
+      description: DescritionContent,
       price: undefined,
       duration: "",
       category: "",
@@ -89,10 +115,10 @@ export function ProductForm() {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="description">Product Description</FieldLabel>
-              <Input
-                {...field}
-                id="description"
-                aria-invalid={fieldState.invalid}
+              <Editor
+                invalid={fieldState.invalid}
+                content={field.value}
+                onChange={(value: string) => field.onChange(value)}
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>

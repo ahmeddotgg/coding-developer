@@ -26,7 +26,10 @@
         "useSortedClasses": {
           "fix": "safe",
           "level": "warn",
-          "options": { "attributes": ["cn", "cva"], "functions": ["cn", "cva"] }
+          "options": {
+            "attributes": ["cn", "cva"],
+            "functions": ["cn", "cva"]
+          }
         }
       },
       "correctness": {
