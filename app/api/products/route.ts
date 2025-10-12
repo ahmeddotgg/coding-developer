@@ -1,30 +1,11 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { NextResponse } from "next/server";
-import type { z } from "zod";
+import { readProducts, writeProducts } from "@/lib/api";
 import { ProductFormSchema } from "@/lib/schema";
-
-type StoredProduct = Omit<z.infer<typeof ProductFormSchema>, "image"> & {
-  id: number;
-  image: string;
-};
+import type { StoredProduct } from "@/lib/types";
 
 const uploadDir = path.join(process.cwd(), "public/uploads");
-const dataFile = path.join(process.cwd(), "data/products.json");
-
-async function readProducts(): Promise<StoredProduct[]> {
-  try {
-    const data = await fs.readFile(dataFile, "utf8");
-    return JSON.parse(data);
-  } catch {
-    return [];
-  }
-}
-
-async function writeProducts(products: StoredProduct[]) {
-  await fs.mkdir(path.dirname(dataFile), { recursive: true });
-  await fs.writeFile(dataFile, JSON.stringify(products, null, 2), "utf8");
-}
 
 export async function POST(req: Request) {
   await fs.mkdir(uploadDir, { recursive: true });
@@ -43,7 +24,6 @@ export async function POST(req: Request) {
 
   const publicPath = `/uploads/${filename}`;
 
-  // Collect other fields
   const fields = Object.fromEntries(form.entries());
 
   const parsed = {
