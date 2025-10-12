@@ -63,7 +63,7 @@ export function ProductForm() {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <FieldGroup>
         <div className="grid grid-cols-1 gap-x-2 gap-y-8 md:space-y-0 lg:grid-cols-3 min-[370px]:grid-cols-2">
           <Controller
