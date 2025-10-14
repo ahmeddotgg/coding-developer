@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +12,7 @@ interface Props {
   duration: string;
   category: string;
   image: string;
-  type: "course" | "diploma";
+  price: number;
 }
 
 export default function CourseCard({
@@ -20,33 +21,30 @@ export default function CourseCard({
   image,
   description,
   duration,
-  type,
 }: Props) {
   return (
-    <div className="hover:-translate-y-2 flex h-full flex-col gap-4 rounded-xl border shadow transition-transform">
+    <div className="hover:-translate-y-2 grid grid-rows-[12rem_1fr] gap-4 overflow-hidden rounded-2xl border-2 bg-gray-50 text-black shadow-2xl transition-transform">
       <Image
         src={image}
         alt={title}
         width={500}
         height={500}
-        className="h-full w-full rounded-2xl object-cover"
+        className="h-full w-full object-cover"
       />
 
-      <div className="space-y-1 p-4">
-        <p className="text-muted-foreground text-sm">
-          <Clock className="ms-2 inline-flex size-3.5" />
+      <div className="flex flex-col gap-2 px-6 py-3">
+        <p className="flex items-center gap-1 text-muted-foreground text-sm">
+          <Clock className="size-3.5" strokeWidth={2.8} />
           {duration}
         </p>
-        <h2 className="font-semibold text-lg">{title}</h2>
-        <div className="my-4 line-clamp-2">
-          <p>{description}</p>
-        </div>
+        <h2 className="flex-1 font-semibold text-lg">{title}</h2>
+        <div className="mb-2.5 line-clamp-2 text-sm">{parse(description)}</div>
 
         <Link
-          href={type === "course" ? `/courses/${id}` : `/diplomas/${id}`}
+          href={`/courses/${id}`}
           className={cn(
             buttonVariants(),
-            "w-full cursor-pointer rounded-full bg-gradient-to-bl from-primary to-indigo-400 font-semibold text-background hover:text-background",
+            "w-full cursor-pointer rounded-full bg-gradient-to-l from-primary to-indigo-500 font-semibold text-background text-white hover:text-background",
           )}
         >
           سجل الأن

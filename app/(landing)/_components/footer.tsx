@@ -7,7 +7,7 @@ export const Footer = () => {
 
 export default function Footer01() {
   return (
-    <footer className="bg-primary/10">
+    <footer className="bg-card">
       <div className="container grid items-center gap-4 rounded-t-lg p-10 md:grid-cols-2">
         <div className="space-y-6">
           <Image

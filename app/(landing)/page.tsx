@@ -15,14 +15,7 @@ export default function HomePage() {
       <Hero />
       <ChooseUs />
       <NewCources />
-      <div className="bg-indigo-300/20 py-22">
-        <div className="container space-y-16">
-          <h2 className="text-center font-bold text-4xl">معرض الاكاديمية</h2>
-          <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 min-[400px]:grid-cols-2 min-[660px]:grid-cols-3">
-            <Gallery />
-          </div>
-        </div>
-      </div>
+      <Gallery />
       <Faq />
     </>
   );

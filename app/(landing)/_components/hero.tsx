@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 
 export const Hero = () => {
   return (
-    <div className="space-y-8">
-      <div className="container grid grid-cols-1 items-center justify-items-center gap-4 space-y-14 pb-8 md:grid-cols-2 md:pb-22">
+    <div className="space-y-8 py-8 sm:py-24">
+      <div className="container grid grid-cols-1 items-center justify-items-center gap-4 space-y-14 md:grid-cols-2">
         <div className="fade-in slide-in-from-right-10 flex animate-in flex-col justify-center space-y-6 text-balance text-center duration-1000 md:text-start">
           <h1 className="font-bold text-5xl leading-16 min-[545px]:text-6xl min-[545px]:leading-22">
             خطوتك الأولى نحو احتراف{" "}
@@ -22,8 +22,8 @@ export const Hero = () => {
             <Link
               href="/sign-in"
               className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "group w-full bg-gradient-to-l from-primary to-indigo-500 text-background hover:text-background min-[400px]:w-fit min-[400px]:px-12!",
+                buttonVariants({ size: "lg" }),
+                "group w-full bg-gradient-to-l from-primary to-indigo-500 min-[400px]:w-fit min-[400px]:px-12!",
               )}
             >
               أبدا الان

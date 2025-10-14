@@ -75,57 +75,68 @@ export const Gallery = async () => {
     );
   }
 
-  return images.map(({ src, base64, width, height }) => {
-    const altText =
-      src
-        .split("/")
-        .pop()
-        ?.replace(/\..+$/, "")
-        .replace(/[-_]/g, " ")
-        .replace(/\b\w/g, (char) => char.toUpperCase())
-        .trim() || "Gallery image";
+  return (
+    <div className="py-22">
+      <div className="container space-y-16">
+        <h2 className="text-center font-bold text-4xl">معرض الاكاديمية</h2>
+        <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 min-[400px]:grid-cols-2 min-[660px]:grid-cols-3">
+          {images.map(({ src, base64, width, height }) => {
+            const altText =
+              src
+                .split("/")
+                .pop()
+                ?.replace(/\..+$/, "")
+                .replace(/[-_]/g, " ")
+                .replace(/\b\w/g, (char) => char.toUpperCase())
+                .trim() || "Gallery image";
 
-    return (
-      <div
-        key={src}
-        className="lg:nth-last-[1]:col-span-2 lg:nth-last-[2]:col-span-2 lg:nth-last-[1]:block min-[660px]:nth-last-[1]:hidden"
-      >
-        <Dialog>
-          <DialogTrigger asChild>
-            <AspectRatio
-              ratio={3 / 2}
-              className="group relative cursor-zoom-in overflow-hidden rounded-lg"
-            >
-              <Image
-                src={src}
-                placeholder="blur"
-                blurDataURL={base64}
-                height={height}
-                width={width}
-                alt={altText}
-                className="h-full w-full rounded-lg object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
-                loading="lazy"
-              />
-            </AspectRatio>
-          </DialogTrigger>
-          <DialogContent className="flex min-w-[50vw]! cursor-zoom-out items-center justify-center p-0 [&>button]:rounded-full [&>button]:bg-black/70 [&>button]:p-1 [&>button]:text-white">
-            <DialogTitle className="sr-only">{altText}</DialogTitle>
-            <DialogDescription className="sr-only">{altText}</DialogDescription>
-            <DialogClose asChild>
-              <Image
-                src={src}
-                placeholder="blur"
-                blurDataURL={base64}
-                height={height}
-                width={width}
-                alt={altText}
-                className="h-full w-full rounded-lg object-contain"
-                loading="lazy"
-              />
-            </DialogClose>
-          </DialogContent>
-        </Dialog>
+            return (
+              <div
+                key={src}
+                className="lg:nth-last-[1]:col-span-2 lg:nth-last-[2]:col-span-2 lg:nth-last-[1]:block min-[660px]:nth-last-[1]:hidden"
+              >
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <AspectRatio
+                      ratio={3 / 2}
+                      className="group relative cursor-zoom-in overflow-hidden rounded-lg"
+                    >
+                      <Image
+                        src={src}
+                        placeholder="blur"
+                        blurDataURL={base64}
+                        height={height}
+                        width={width}
+                        alt={altText}
+                        className="h-full w-full rounded-lg object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </AspectRatio>
+                  </DialogTrigger>
+                  <DialogContent className="flex min-w-[50vw]! cursor-zoom-out items-center justify-center p-0 [&>button]:rounded-full [&>button]:bg-black/70 [&>button]:p-1 [&>button]:text-white">
+                    <DialogTitle className="sr-only">{altText}</DialogTitle>
+                    <DialogDescription className="sr-only">
+                      {altText}
+                    </DialogDescription>
+                    <DialogClose asChild>
+                      <Image
+                        src={src}
+                        placeholder="blur"
+                        blurDataURL={base64}
+                        height={height}
+                        width={width}
+                        alt={altText}
+                        className="h-full w-full rounded-lg object-contain"
+                        loading="lazy"
+                      />
+                    </DialogClose>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    );
-  });
+    </div>
+  );
 };

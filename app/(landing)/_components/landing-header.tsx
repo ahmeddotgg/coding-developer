@@ -28,7 +28,7 @@ export const LandingHeader = () => {
         }
       }}
     >
-      <div className="bg-background shadow">
+      <div className="bg-card shadow">
         <div className="container flex h-20 items-center gap-2 font-semibold sm:gap-6">
           <SidebarTrigger className="min-md:hidden" />
           <Link href="/" className="flex-1 md:flex-none">
@@ -67,20 +67,6 @@ export const LandingHeader = () => {
                       className={cn(pathname === "/courses" && "active")}
                     >
                       الدورات
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    asChild
-                    className={navigationMenuTriggerStyle()}
-                  >
-                    <Link
-                      href="/diplomas"
-                      className={cn(pathname === "/diplomas" && "active")}
-                    >
-                      الدبلومات
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>

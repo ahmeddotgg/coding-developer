@@ -39,10 +39,6 @@ const links = [
     url: "/courses",
   },
   {
-    title: "الدبلومات",
-    url: "/diplomas",
-  },
-  {
     title: "تواصل معنا",
     url: "/contact-us",
   },

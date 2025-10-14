@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function ContactUs() {
   return (
-    <div className="container space-y-18">
+    <div className="container space-y-18 py-8 sm:py-24">
       <h1 className="text-center font-bold text-4xl">تواصل معنا</h1>
 
       <div className="space-y-4">

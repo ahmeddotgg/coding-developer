@@ -21,36 +21,45 @@ const items = [
 
 export const ChooseUs = () => {
   return (
-    <div className="bg-indigo-300/20 py-22">
+    <div className="py-22">
       <div className="container space-y-12">
         <h2 className="text-center font-bold text-4xl">لماذا نحن؟</h2>
-        <div className="overflow-hidden rounded-2xl bg-foreground dark:bg-background">
-          <video width="320" height="240" controls className="mx-auto">
-            <track kind="captions" />
-            <source src="coding-developer.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          {items.map((item) => (
-            <div
-              key={item.title}
-              className="hover:-translate-y-2 flex flex-col gap-4 rounded-2xl bg-background p-4 shadow transition-transform md:flex-row dark:bg-foreground dark:text-background"
+
+        <div className="flex flex-col gap-4 min-[910px]:flex-row">
+          <div className="w-full rounded-2xl bg-neutral-950 min-[910px]:w-fit">
+            <video
+              controls
+              className="mx-auto w-full max-w-[370px] rounded-2xl"
+              preload="true"
             >
-              <div>
-                <h2 className="line-clamp-2 font-semibold text-lg">
-                  {item.title}
-                </h2>
+              <track kind="captions" />
+              <source src="coding-developer.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <div className="grid flex-1 gap-4 min-[440px]:grid-cols-2 min-[940px]:grid-cols-1">
+            {items.map((item) => (
+              <div
+                key={item.title}
+                className="hover:-translate-y-1 flex flex-col items-center justify-between gap-8 rounded-2xl border bg-gradient-to-tl from-gray-50 to-sky-600/20 p-4 text-center text-black shadow-sm transition-transform min-[940px]:flex-row min-[940px]:text-start dark:bg-gray-50"
+              >
+                <div>
+                  <h2 className="max-w-[12ch] text-balance font-semibold text-2xl">
+                    {item.title}
+                  </h2>
+                </div>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={250}
+                  height={250}
+                  style={{ width: "auto", height: "auto" }}
+                  unoptimized
+                  className="min-[940px]:max-w-[220px]"
+                />
               </div>
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={700}
-                height={700}
-                className="ms-auto flex-1 md:max-w-[170px]"
-              />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
