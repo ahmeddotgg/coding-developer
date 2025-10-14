@@ -44,7 +44,7 @@ export default function CourseCard({
           href={`/courses/${id}`}
           className={cn(
             buttonVariants(),
-            "w-full cursor-pointer rounded-full bg-gradient-to-l from-primary to-indigo-500 font-semibold text-background text-white hover:text-background",
+            "w-full cursor-pointer rounded-full bg-gradient-to-l from-primary to-indigo-500 font-semibold text-white hover:text-background",
           )}
         >
           سجل الأن
