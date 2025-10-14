@@ -12,16 +12,7 @@ export const NewCources = async () => {
           .sort((a, b) => Number(b.id) - Number(a.id))
           .slice(0, 3)
           .map((product) => (
-            <CourseCard
-              id={product.id}
-              category={product.category}
-              description={product.description}
-              duration={product.duration}
-              image={product.image}
-              title={product.title}
-              key={product.id}
-              type="diploma"
-            />
+            <CourseCard {...product} key={product.id} />
           ))}
       </div>
     </div>
