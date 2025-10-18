@@ -519,7 +519,8 @@ function SidebarMenuButton({
           className: "font-semibold! [&>svg]:size-5",
         }),
         className,
-        isActive && "bg-primary/60! hover:bg-primary/50!",
+        isActive &&
+          "bg-gradient-to-l! from-primary/70 to-indigo-700 text-white!",
       )}
       {...props}
     />

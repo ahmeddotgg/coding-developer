@@ -3,7 +3,9 @@
 import {
   IconCirclePlus,
   IconDashboard,
+  IconSchool,
   IconShoppingCart,
+  IconUsers,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -34,6 +36,16 @@ const links = [
     title: "اضافة منتج",
     url: "/dashboard/new",
     icon: IconCirclePlus,
+  },
+  {
+    title: "الطلاب",
+    url: "/dashboard/students",
+    icon: IconUsers,
+  },
+  {
+    title: "المدربين",
+    url: "/dashboard/team",
+    icon: IconSchool,
   },
 ];
 
